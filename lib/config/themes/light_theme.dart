@@ -5,9 +5,10 @@ class CustomTheme {
   static ThemeData getLightTheme() {
     return ThemeData(
         brightness: Brightness.light,
-        primaryColor: white,
-        colorScheme: ColorScheme(),
-        scaffoldBackgroundColor: purple,
+        primaryColor: colorWhite,
+        primaryColorLight: colorLightPurple,
+        primaryColorDark: colorDarkPurple,
+        scaffoldBackgroundColor: colorPurple,
         fontFamily: 'AvenirNext');
   }
 }

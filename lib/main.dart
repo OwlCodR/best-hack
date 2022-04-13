@@ -1,3 +1,6 @@
+import 'package:best_hack/config/constants/constants.dart';
+import 'package:best_hack/config/themes/light_theme.dart';
+import 'package:best_hack/feature_main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,14 +15,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Stonks Inc.',
-      theme: ThemeData(
-        brightness: Brightness.light,
-        primaryColor: Colors.black,
-
-        // Define the default font family.
-        fontFamily: 'AvenirNext',
-      ),
-      home: const MainScreen(title: 'Мой кошелек'),
+      initialRoute: Constants.routeMainScreen,
+      routes: {
+        Constants.routeMainScreen: (context) =>
+      },
+      theme: CustomTheme.getLightTheme(),
+      home: const MainScreen(),
     );
   }
 }
