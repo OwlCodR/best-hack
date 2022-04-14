@@ -17,10 +17,9 @@ class MyApp extends StatelessWidget {
       title: 'Stonks Inc.',
       initialRoute: Constants.routeMainScreen,
       routes: {
-        Constants.routeMainScreen: (context) =>
+        Constants.routeMainScreen: (context) => const MainScreen(),
       },
       theme: CustomTheme.getLightTheme(),
-      home: const MainScreen(),
     );
   }
 }
