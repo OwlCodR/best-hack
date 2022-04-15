@@ -9,7 +9,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class StocksListWidget extends StatefulWidget {
-  const StocksListWidget({Key? key}) : super(key: key);
+  const StocksListWidget({Key? key, required this.onItemTapped})
+      : super(key: key);
+
+  final Function(ResponseStock) onItemTapped;
 
   @override
   State<StocksListWidget> createState() => _StocksListWidgetState();
@@ -27,7 +30,7 @@ class _StocksListWidgetState extends State<StocksListWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(maxWidth: 650),
+      constraints: const BoxConstraints(maxWidth: 700),
       child: customCard(
         child: cardContent(context),
       ),
@@ -58,7 +61,10 @@ class _StocksListWidgetState extends State<StocksListWidget> {
                   padding: const EdgeInsets.all(10),
                   itemCount: stocks.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return StocksListItemWidget(stock: stocks[index]);
+                    return StocksListItemWidget(
+                      onItemTapped: (stock) => widget.onItemTapped(stock),
+                      stock: stocks[index],
+                    );
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(
@@ -68,15 +74,13 @@ class _StocksListWidgetState extends State<StocksListWidget> {
                 ),
               );
             } else if (snapshot.hasError) {
-              log('Error: ${snapshot.error}');
+              log('cardContent() | Error: ${snapshot.error}');
               return Text(
                 'Failed to load data.',
                 style: Theme.of(context).textTheme.labelLarge,
               );
             } else {
-              return CircularProgressIndicator(
-                color: Constants.colorWhite,
-              );
+              return customCircularProgressIndicator();
             }
           },
         )

@@ -58,9 +58,7 @@ class StockInfoWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (stock == null) {
-      return CircularProgressIndicator(
-        color: Constants.colorWhite,
-      );
+      return customCircularProgressIndicator();
     }
 
     return customCard(

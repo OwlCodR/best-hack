@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/feature_main_screen/feature_api_provider/api_provider.dart';
+import 'package:best_hack/feature_main_screen/feature_chart/chart_widget.dart';
 import 'package:best_hack/feature_main_screen/feature_responses/reposne_stock.dart';
 import 'package:best_hack/feature_main_screen/feature_stock_info/stock_info_widget.dart';
 import 'package:best_hack/feature_main_screen/feature_stock_trading/stock_trading_widget.dart';
@@ -26,6 +29,7 @@ class _MainScreenState extends State<MainScreen> {
           if (response.stocks.isNotEmpty)
             {
               setState(() {
+                log('main_screen initState() | ApiProvider.getStocks().then()');
                 _currentStock = response.stocks[2];
               })
             }
@@ -40,14 +44,35 @@ class _MainScreenState extends State<MainScreen> {
       appBar: appBar(context),
       body: Row(
         children: [
-          const StocksListWidget(),
-          Row(
+          StocksListWidget(
+            onItemTapped: (stock) => setState(() {
+              _currentStock = stock;
+            }),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              StockInfoWidget(
-                stock: _currentStock,
+              Row(
+                children: [
+                  StockInfoWidget(
+                    stock: _currentStock,
+                  ),
+                  StockTradingWidget(
+                    stock: _currentStock,
+                  ),
+                ],
               ),
-              StockTradingWidget(
-                stock: _currentStock,
+              Padding(
+                padding: const EdgeInsets.only(left: 40.0),
+                child: SizedBox(
+                  width: 1000,
+                  height: 500,
+                  child: ChartWidget(
+                    animate: false,
+                    stock: _currentStock,
+                  ),
+                ),
               ),
             ],
           ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/feature_main_screen/feature_custom_widgets/custom_widgets.dart';
 import 'package:best_hack/feature_main_screen/feature_responses/reposne_stock.dart';
@@ -5,10 +7,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class StockTradingWidget extends StatelessWidget {
+class StockTradingWidget extends StatefulWidget {
   const StockTradingWidget({Key? key, required this.stock}) : super(key: key);
 
   final ResponseStock? stock;
+
+  @override
+  State<StockTradingWidget> createState() => _StockTradingWidgetState();
+}
+
+class _StockTradingWidgetState extends State<StockTradingWidget> {
+  int _counter = 1;
 
   ButtonStyle _buttonStyle() {
     return ButtonStyle(
@@ -47,6 +56,50 @@ class StockTradingWidget extends StatelessWidget {
     );
   }
 
+  Widget _counterWidget(BuildContext context) {
+    return Container(
+      constraints: const BoxConstraints(minWidth: 220),
+      decoration: BoxDecoration(
+        color: Constants.colorPurple,
+        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(5.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            customCounterTextBotton(
+              text: '+',
+              context: context,
+              onPressed: () => {
+                setState(() {
+                  if (_counter < 100) {
+                    _counter++;
+                  }
+                })
+              },
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30.0, right: 30.0),
+              child: Text('$_counter'),
+            ),
+            customCounterTextBotton(
+              text: '-',
+              context: context,
+              onPressed: () => {
+                setState(() {
+                  if (_counter > 1) {
+                    _counter--;
+                  }
+                })
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _stockTradeButtons(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -72,11 +125,13 @@ class StockTradingWidget extends StatelessWidget {
   }
 
   Widget _stockTrade(BuildContext context) {
-    final DateTime now = DateTime.now();
-    final DateFormat date = DateFormat('dd-MM-yyyy');
-    final DateFormat time = DateFormat('HH:MM');
-    final String formattedDate = date.format(now);
-    final String formattedTime = time.format(now);
+    log('_stockTrade | ${widget.stock!.lastUpdatedEpochTime}');
+    final DateTime lastUpdated =
+        DateTime.fromMillisecondsSinceEpoch(widget.stock!.lastUpdatedEpochTime);
+    final String formattedDate = DateFormat('dd-MM-yyyy').format(lastUpdated);
+    final String formattedTime = DateFormat('kk:mm:ss').format(lastUpdated);
+
+    log('_stockTrade | $formattedDate $formattedTime');
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -86,12 +141,16 @@ class StockTradingWidget extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         Text(
-          '${stock!.price.toStringAsFixed(2).replaceAll('.', ',')} \$\$',
+          '${widget.stock!.price.toStringAsFixed(2).replaceAll('.', ',')} у.е.',
           style: Theme.of(context).textTheme.displayMedium,
         ),
         deltaText(
           context: context,
-          stock: stock!,
+          stock: widget.stock!,
+        ),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: _counterWidget(context),
         ),
       ],
     );
@@ -99,10 +158,8 @@ class StockTradingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (stock == null) {
-      return CircularProgressIndicator(
-        color: Constants.colorWhite,
-      );
+    if (widget.stock == null) {
+      return customCircularProgressIndicator();
     }
 
     return customCard(

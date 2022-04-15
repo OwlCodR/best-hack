@@ -22,6 +22,7 @@ class ResponseStock {
     required this.imageUrl,
     required this.state,
     required this.priceDelta,
+    required this.lastUpdatedEpochTime,
   });
 
   double price;
@@ -29,6 +30,7 @@ class ResponseStock {
   String tag;
   String imageUrl;
   StockState state;
+  int lastUpdatedEpochTime; // ms
   _ResponsePriceDelta priceDelta;
 
   factory ResponseStock.fromJson(Map<String, dynamic> json) {
@@ -45,6 +47,7 @@ class ResponseStock {
       name: json['name'],
       tag: json['tag'],
       imageUrl: 'https://i.imgur.com/7Qc8TC8.png',
+      lastUpdatedEpochTime: DateTime.now().millisecondsSinceEpoch,
       state: StockStateProvider.fromString(json['state']),
       priceDelta: _ResponsePriceDelta.fromjson(json['change']),
     );
@@ -74,8 +77,14 @@ class StockStateProvider {
         return StockState.REGULAR;
       case 'POST':
         return StockState.POST;
+      case 'CLOSED':
+        return StockState.CLOSED;
+      case 'POSTPOST':
+        return StockState.POSTPOST;
+      case 'PREPRE':
+        return StockState.PREPRE;
     }
   }
 }
 
-enum StockState { PRE, POST, REGULAR }
+enum StockState { PRE, POST, REGULAR, CLOSED, POSTPOST, PREPRE }

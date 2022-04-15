@@ -16,8 +16,40 @@ Widget deltaText({
   }
 
   return Text(
-    '$sign${stock.priceDelta.delta.toStringAsFixed(2)} \$\$ (${stock.priceDelta.percent.toStringAsFixed(2)}%)',
+    '$sign${stock.priceDelta.delta.toStringAsFixed(2)} у.е. (${stock.priceDelta.percent.toStringAsFixed(2)}%)',
     style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: textColor),
+  );
+}
+
+Widget customCounterTextBotton({
+  required BuildContext context,
+  required Function() onPressed,
+  required String text,
+}) {
+  return SizedBox(
+    height: 40,
+    width: 40,
+    child: TextButton(
+      style: TextButton.styleFrom(
+        textStyle: Theme.of(context).textTheme.bodySmall,
+        backgroundColor: Constants.colorDarkPurple,
+      ),
+      onPressed: () => onPressed(),
+      child: Text(
+        text,
+        style: Theme.of(context).textTheme.bodySmall,
+      ),
+    ),
+  );
+}
+
+Widget customCircularProgressIndicator() {
+  return SizedBox(
+    height: 50,
+    width: 50,
+    child: CircularProgressIndicator(
+      color: Constants.colorWhite,
+    ),
   );
 }
 
