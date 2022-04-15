@@ -46,7 +46,7 @@ class ResponseStock {
       price: json['price'],
       name: json['name'],
       tag: json['tag'],
-      imageUrl: 'https://i.imgur.com/7Qc8TC8.png',
+      imageUrl: 'https://i.imgur.com/eXkgFEA.png',
       lastUpdatedEpochTime: DateTime.now().millisecondsSinceEpoch,
       state: StockStateProvider.fromString(json['state']),
       priceDelta: _ResponsePriceDelta.fromjson(json['change']),

@@ -116,7 +116,7 @@ class _StockTradingWidgetState extends State<StockTradingWidget> {
           padding: const EdgeInsets.all(12.0),
           child: tradeButton(
             context: context,
-            text: 'Продаить',
+            text: 'Продать',
             imagePath: Constants.pathSell,
           ),
         ),
