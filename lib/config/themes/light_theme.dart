@@ -23,6 +23,12 @@ class CustomTheme {
           fontSize: 32,
           fontWeight: FontWeight.bold,
         ),
+        displayMedium: TextStyle(
+          color: Constants.colorWhite,
+          fontFamily: 'AvenirNext',
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+        ),
         bodyLarge: TextStyle(
           color: Constants.colorWhite,
           fontFamily: 'AvenirNext',
@@ -41,11 +47,17 @@ class CustomTheme {
           fontSize: 18,
           fontWeight: FontWeight.normal,
         ),
-        labelMedium: TextStyle(
+        labelLarge: TextStyle(
           color: Constants.colorRed,
           fontFamily: 'AvenirNext',
           fontSize: 24,
           fontWeight: FontWeight.bold,
+        ),
+        labelMedium: TextStyle(
+          color: Constants.colorGray,
+          fontFamily: 'Poppins',
+          fontSize: 18,
+          fontWeight: FontWeight.normal,
         ),
       ),
     );
