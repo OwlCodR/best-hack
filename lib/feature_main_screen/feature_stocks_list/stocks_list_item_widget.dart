@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:best_hack/config/constants/constants.dart';
+import 'package:best_hack/feature_main_screen/feature_custom_widgets/custom_widgets.dart';
 import 'package:best_hack/feature_main_screen/feature_responses/reposne_stock.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -12,23 +13,16 @@ class StocksListItemWidget extends StatelessWidget {
 
   Widget _priceDelta(BuildContext context) {
     String arrowPath = Constants.pathArrowDown;
-    Color textColor = Constants.colorRed;
-    String sign = '';
 
     if (stock.priceDelta.delta >= 0) {
-      sign = '+';
-      textColor = Constants.colorGreen;
       arrowPath = Constants.pathArrowUp;
     }
 
     return Row(
       children: [
-        Text(
-          '$sign${stock.priceDelta.delta.toStringAsFixed(2)} \$\$ (${stock.priceDelta.percent.toStringAsFixed(2)}%)',
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(color: textColor),
+        deltaText(
+          context: context,
+          stock: stock,
         ),
         Padding(
           padding: const EdgeInsets.only(left: 8.0, right: 8.0),

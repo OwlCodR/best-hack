@@ -2,6 +2,7 @@ import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/feature_main_screen/feature_api_provider/api_provider.dart';
 import 'package:best_hack/feature_main_screen/feature_responses/reposne_stock.dart';
 import 'package:best_hack/feature_main_screen/feature_stock_info/stock_info_widget.dart';
+import 'package:best_hack/feature_main_screen/feature_stock_trading/stock_trading_widget.dart';
 import 'package:best_hack/feature_main_screen/feature_stocks_list/stocks_list_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -40,8 +41,15 @@ class _MainScreenState extends State<MainScreen> {
       body: Row(
         children: [
           const StocksListWidget(),
-          StockInfoWidget(
-            stock: _currentStock,
+          Row(
+            children: [
+              StockInfoWidget(
+                stock: _currentStock,
+              ),
+              StockTradingWidget(
+                stock: _currentStock,
+              ),
+            ],
           ),
         ],
       ),

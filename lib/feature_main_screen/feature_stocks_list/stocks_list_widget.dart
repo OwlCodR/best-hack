@@ -62,7 +62,7 @@ class _StocksListWidgetState extends State<StocksListWidget> {
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(
-                      color: Constants.colorWhitePurple,
+                      color: Constants.colorVeryLightPurple,
                     );
                   },
                 ),
