@@ -35,6 +35,12 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.0.3
+  skeleton_loader: ^2.0.0+4
+  http: ^0.13.4
+  intl: ^0.17.0
+  charts_flutter: ^0.12.0
+  d_chart: ^0.0.4
+  fl_chart: ^0.50.1
 
 dev_dependencies:
   flutter_test:
@@ -59,9 +65,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -80,6 +85,12 @@ flutter:
        - asset: assets/fonts/AvenirNext-Bold.otf
          weight: 700
        - asset: assets/fonts/AvenirNext-Regular.otf
+         weight: 400
+   - family: Poppins
+     fonts:
+       - asset: assets/fonts/Poppins-Bold.ttf
+         weight: 700
+       - asset: assets/fonts/Poppins-Regular.ttf
          weight: 400
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
