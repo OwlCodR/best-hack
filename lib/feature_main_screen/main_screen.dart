@@ -85,7 +85,7 @@ class _MainScreenState extends State<MainScreen> {
     return AppBar(
       elevation: 0,
       toolbarHeight: 110,
-      backgroundColor: Constants.colorPurple,
+      backgroundColor: AppConstants.colors.purple,
       title: titleWidget(context),
       actions: <Widget>[
         Padding(
@@ -96,12 +96,12 @@ class _MainScreenState extends State<MainScreen> {
                 children: [
                   Text(
                     'Войти',
-                    style: Theme.of(context).textTheme.displayMedium,
+                    style: Theme.of(context).textTheme.headline2,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Image.asset(
-                      Constants.pathLogin,
+                      AppConstants.paths.login,
                       scale: 1.3,
                     ),
                   ),
@@ -120,7 +120,7 @@ class _MainScreenState extends State<MainScreen> {
         padding: const EdgeInsets.only(left: 35.0, right: 35.0),
         child: Divider(
           thickness: 0.5,
-          color: Constants.colorWhite,
+          color: AppConstants.colors.white,
         ),
       ),
     );
@@ -132,7 +132,7 @@ class _MainScreenState extends State<MainScreen> {
         Padding(
           padding: const EdgeInsets.only(left: 20.0),
           child: Image.asset(
-            Constants.pathLogoPng,
+            AppConstants.paths.logoPng,
             height: 40,
           ),
         ),
@@ -141,18 +141,18 @@ class _MainScreenState extends State<MainScreen> {
           child: Center(
             child: RichText(
               text: TextSpan(
-                style: Theme.of(context).textTheme.displayLarge,
+                style: Theme.of(context).textTheme.headline1,
                 children: <TextSpan>[
                   TextSpan(
                     text: 'Делаем ваши ',
                     style: TextStyle(
-                      color: Constants.colorWhite,
+                      color: AppConstants.colors.white,
                     ),
                   ),
                   TextSpan(
                     text: 'торги удобными',
                     style: TextStyle(
-                      color: Constants.colorGreen,
+                      color: AppConstants.colors.white,
                     ),
                   ),
                 ],

@@ -1,5 +1,6 @@
 import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/config/themes/light_theme.dart';
+import 'package:best_hack/feature_auth/feature_register_screen/register_screen.dart';
 import 'package:best_hack/feature_main_screen/main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Stonks Inc.',
-      initialRoute: Constants.routeMainScreen,
+      initialRoute: AppConstants.routes.registerScreen,
       routes: {
-        Constants.routeMainScreen: (context) => const MainScreen(),
+        AppConstants.routes.mainScreen: (context) => const MainScreen(),
+        AppConstants.routes.registerScreen: (context) => const RegisterScreen(),
       },
       theme: CustomTheme.getLightTheme(),
     );

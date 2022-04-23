@@ -5,56 +5,56 @@ class CustomTheme {
   static ThemeData getLightTheme() {
     return ThemeData(
       brightness: Brightness.light,
-      backgroundColor: Constants.colorPurple,
-      primaryColor: Constants.colorPurple,
-      primaryColorLight: Constants.colorLightPurple,
-      primaryColorDark: Constants.colorDarkPurple,
+      backgroundColor: AppConstants.colors.purple,
+      primaryColor: AppConstants.colors.blue,
+      primaryColorLight: AppConstants.colors.lightPurple,
+      primaryColorDark: AppConstants.colors.darkPurple,
       // disabledColor: const Color(0x80272727),
       // shadowColor: const Color(0x80000000),
-      cardColor: Constants.colorDarkPurple,
-      dividerColor: Constants.colorWhite,
-      errorColor: Constants.colorRed,
-      scaffoldBackgroundColor: Constants.colorPurple,
-      fontFamily: 'AvenirNext',
+      cardColor: AppConstants.colors.darkPurple,
+      dividerColor: AppConstants.colors.gray,
+      errorColor: AppConstants.colors.red,
+      scaffoldBackgroundColor: AppConstants.colors.purple,
+      fontFamily: 'Poppins',
       textTheme: TextTheme(
-        displayLarge: TextStyle(
-          color: Constants.colorWhite,
-          fontFamily: 'AvenirNext',
+        headline1: TextStyle(
+          color: AppConstants.colors.white,
+          fontFamily: 'Poppins',
           fontSize: 32,
           fontWeight: FontWeight.bold,
         ),
-        displayMedium: TextStyle(
-          color: Constants.colorWhite,
-          fontFamily: 'AvenirNext',
+        headline2: TextStyle(
+          color: AppConstants.colors.white,
+          fontFamily: 'Poppins',
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
-        bodyLarge: TextStyle(
-          color: Constants.colorWhite,
-          fontFamily: 'AvenirNext',
+        headline3: TextStyle(
+          color: AppConstants.colors.white,
+          fontFamily: 'Poppins',
           fontSize: 20,
           fontWeight: FontWeight.bold,
         ),
-        bodyMedium: TextStyle(
-          color: Constants.colorWhite,
+        headline4: TextStyle(
+          color: AppConstants.colors.white,
           fontFamily: 'Poppins',
           fontSize: 20,
           fontWeight: FontWeight.normal,
         ),
-        bodySmall: TextStyle(
-          color: Constants.colorGray,
+        headline5: TextStyle(
+          color: AppConstants.colors.gray,
           fontFamily: 'Poppins',
           fontSize: 18,
           fontWeight: FontWeight.normal,
         ),
-        labelLarge: TextStyle(
-          color: Constants.colorRed,
-          fontFamily: 'AvenirNext',
+        subtitle1: TextStyle(
+          color: AppConstants.colors.red,
+          fontFamily: 'Poppins',
           fontSize: 24,
           fontWeight: FontWeight.bold,
         ),
-        labelMedium: TextStyle(
-          color: Constants.colorGray,
+        subtitle2: TextStyle(
+          color: AppConstants.colors.gray,
           fontFamily: 'Poppins',
           fontSize: 18,
           fontWeight: FontWeight.normal,

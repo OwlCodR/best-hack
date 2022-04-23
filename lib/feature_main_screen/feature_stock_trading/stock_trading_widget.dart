@@ -21,7 +21,7 @@ class _StockTradingWidgetState extends State<StockTradingWidget> {
 
   ButtonStyle _buttonStyle() {
     return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(Constants.colorLightPurple),
+        backgroundColor: MaterialStateProperty.all(AppConstants.colors.lightPurple),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -48,7 +48,7 @@ class _StockTradingWidgetState extends State<StockTradingWidget> {
             ),
             Text(
               text,
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(context).textTheme.bodyText1,
             ),
           ],
         ),
@@ -60,7 +60,7 @@ class _StockTradingWidgetState extends State<StockTradingWidget> {
     return Container(
       constraints: const BoxConstraints(minWidth: 220),
       decoration: BoxDecoration(
-        color: Constants.colorPurple,
+        color: AppConstants.colors.purple,
         borderRadius: const BorderRadius.all(Radius.circular(10.0)),
       ),
       child: Padding(
@@ -109,7 +109,7 @@ class _StockTradingWidgetState extends State<StockTradingWidget> {
           child: tradeButton(
             context: context,
             text: 'Купить',
-            imagePath: Constants.pathBuy,
+            imagePath: AppConstants.paths.buy,
           ),
         ),
         Padding(
@@ -117,7 +117,7 @@ class _StockTradingWidgetState extends State<StockTradingWidget> {
           child: tradeButton(
             context: context,
             text: 'Продать',
-            imagePath: Constants.pathSell,
+            imagePath: AppConstants.paths.sell,
           ),
         ),
       ],
@@ -138,11 +138,11 @@ class _StockTradingWidgetState extends State<StockTradingWidget> {
       children: [
         Text(
           'Цена акции на $formattedDate $formattedTime',
-          style: Theme.of(context).textTheme.bodyMedium,
+          style: Theme.of(context).textTheme.bodyText2,
         ),
         Text(
           '${widget.stock!.price.toStringAsFixed(2).replaceAll('.', ',')} у.е.',
-          style: Theme.of(context).textTheme.displayMedium,
+          style: Theme.of(context).textTheme.headline2,
         ),
         deltaText(
           context: context,

@@ -18,23 +18,23 @@ class StockInfoWidget extends StatelessWidget {
       children: [
         Text(
           'Акции / ${stock!.tag}',
-          style: Theme.of(context).textTheme.labelMedium,
+          style: Theme.of(context).textTheme.subtitle2,
         ),
         Text(
           stock!.name,
-          style: Theme.of(context).textTheme.displayLarge,
+          style: Theme.of(context).textTheme.headline1,
         ),
         InkWell(
           onTap: () => log('Tapped'),
           child: Row(
             children: [
               Image.asset(
-                Constants.pathBookmark,
+                AppConstants.paths.bookmark,
                 scale: 1.5,
               ),
               Text(
                 'Добавить в избранное',
-                style: Theme.of(context).textTheme.labelMedium,
+                style: Theme.of(context).textTheme.subtitle2,
               ),
             ],
           ),

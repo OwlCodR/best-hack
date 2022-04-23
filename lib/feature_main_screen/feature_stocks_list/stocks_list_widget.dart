@@ -46,7 +46,7 @@ class _StocksListWidgetState extends State<StocksListWidget> {
             padding: const EdgeInsets.all(10.0),
             child: Text(
               'Акции',
-              style: Theme.of(context).textTheme.displayLarge,
+              style: Theme.of(context).textTheme.headline1,
             ),
           ),
         ),
@@ -68,7 +68,7 @@ class _StocksListWidgetState extends State<StocksListWidget> {
                   },
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(
-                      color: Constants.colorVeryLightPurple,
+                      color: AppConstants.colors.veryLightPurple,
                     );
                   },
                 ),
@@ -77,7 +77,7 @@ class _StocksListWidgetState extends State<StocksListWidget> {
               log('cardContent() | Error: ${snapshot.error}');
               return Text(
                 'Failed to load data.',
-                style: Theme.of(context).textTheme.labelLarge,
+                style: Theme.of(context).textTheme.subtitle1,
               );
             } else {
               return customCircularProgressIndicator();

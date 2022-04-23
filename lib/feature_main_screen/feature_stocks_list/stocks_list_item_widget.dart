@@ -21,10 +21,10 @@ class StocksListItemWidget extends StatefulWidget {
 
 class _StocksListItemWidgetState extends State<StocksListItemWidget> {
   Widget _priceDelta(BuildContext context) {
-    String arrowPath = Constants.pathArrowDown;
+    String arrowPath = AppConstants.paths.arrowDown;
 
     if (widget.stock.priceDelta.delta >= 0) {
-      arrowPath = Constants.pathArrowUp;
+      arrowPath = AppConstants.paths.arrowUp;
     }
 
     return Row(
@@ -47,11 +47,11 @@ class _StocksListItemWidgetState extends State<StocksListItemWidget> {
       children: [
         Text(
           widget.stock.name,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyText1,
         ),
         Text(
           '1 шт ${widget.stock.price.toStringAsFixed(2).replaceAll('.', ',')} у.е.',
-          style: Theme.of(context).textTheme.bodySmall,
+          style: Theme.of(context).textTheme.headline5,
         )
       ],
     );

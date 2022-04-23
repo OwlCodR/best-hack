@@ -114,7 +114,7 @@ class _ChartWidgetState extends State<ChartWidget> {
           log('_ChartWidgetState | Error: ${snapshot.error}');
           return Text(
             'Failed to load data.',
-            style: Theme.of(context).textTheme.labelLarge,
+            style: Theme.of(context).textTheme.subtitle1,
           );
         }
 

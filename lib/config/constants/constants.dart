@@ -1,25 +1,47 @@
 import 'dart:ui';
 
-class Constants {
-  static Color colorVeryLightPurple = const Color(0xff918FF8);
-  static Color colorLightPurple = const Color(0xff364484);
-  static Color colorPurple = const Color(0xff2F3F83);
-  static Color colorDarkPurple = const Color(0xff28367B);
-  static Color colorVeryDarkPurple = const Color(0xff142475);
-  static Color colorWhite = const Color(0xffE1E1E1);
-  static Color colorGreen = const Color(0xff6FE6A9);
-  static Color colorRed = const Color(0xffF76A9B);
-  static Color colorGray = const Color(0xff8086a0);
+class AppConstants {
+  static _AppColors colors = _AppColors();
+  static _AppRoutes routes = _AppRoutes();
+  static _AppKeys keys = _AppKeys();
+  static _AppPaths paths = _AppPaths();
+}
 
-  static String routeMainScreen = '/main';
-  static String routeLoginScreen = '/login';
-  static String routeRegisterScreen = '/register';
+class _AppColors {
+  Color veryLightPurple = const Color(0xff918FF8);
+  Color lightPurple = const Color(0xff364484);
+  Color purple = const Color(0xff2F3F83);
+  Color darkPurple = const Color(0xff28367B);
+  Color veryDarkPurple = const Color(0xff142475);
+  Color white = const Color(0xFFFFFFFF);
+  Color green = const Color(0xff6FE6A9);
+  Color red = const Color(0xffF76A9B);
+  Color gray = const Color(0xFFC8CACF);
 
-  static String pathLogoPng = 'assets/images/logo.png';
-  static String pathArrowUp = 'assets/images/arrow_up.png';
-  static String pathArrowDown = 'assets/images/arrow_down.png';
-  static String pathLogin = 'assets/images/login.png';
-  static String pathBookmark = 'assets/images/bookmark.png';
-  static String pathBuy = 'assets/images/buy.png';
-  static String pathSell = 'assets/images/sell.png';
+  Color lightBlue = const Color(0xFFF3F6FF);
+  Color blue = const Color(0xFF5E7CEC);
+  Color black = const Color(0xFF323030);
+}
+
+class _AppRoutes {
+  String mainScreen = '/main';
+  String loginScreen = '/login';
+  String registerScreen = '/register';
+}
+
+class _AppPaths {
+  String logoPng = 'assets/images/logo.png';
+  String arrowUp = 'assets/images/arrow_up.png';
+  String arrowDown = 'assets/images/arrow_down.png';
+  String login = 'assets/images/login.png';
+  String bookmark = 'assets/images/bookmark.png';
+  String buy = 'assets/images/buy.png';
+  String sell = 'assets/images/sell.png';
+}
+
+class _AppKeys {
+  String token = 'TOKEN';
+  String specification = 'SPECIFICATION';
+  String inviteCode = 'INVITE_CODE';
+  String lastUpdated = 'last_updated';
 }

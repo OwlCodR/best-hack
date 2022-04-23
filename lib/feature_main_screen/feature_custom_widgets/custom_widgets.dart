@@ -7,17 +7,17 @@ Widget deltaText({
   required BuildContext context,
   required ResponseStock stock,
 }) {
-  Color textColor = Constants.colorRed;
+  Color textColor = AppConstants.colors.red;
   String sign = '';
 
   if (stock.priceDelta.delta >= 0) {
     sign = '+';
-    textColor = Constants.colorGreen;
+    textColor = AppConstants.colors.green;
   }
 
   return Text(
     '$sign${stock.priceDelta.delta.toStringAsFixed(2)} у.е. (${stock.priceDelta.percent.toStringAsFixed(2)}%)',
-    style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: textColor),
+    style: Theme.of(context).textTheme.bodyText2?.copyWith(color: textColor),
   );
 }
 
@@ -31,13 +31,13 @@ Widget customCounterTextBotton({
     width: 40,
     child: TextButton(
       style: TextButton.styleFrom(
-        textStyle: Theme.of(context).textTheme.bodySmall,
-        backgroundColor: Constants.colorDarkPurple,
+        textStyle: Theme.of(context).textTheme.headline5,
+        backgroundColor: AppConstants.colors.darkPurple,
       ),
       onPressed: () => onPressed(),
       child: Text(
         text,
-        style: Theme.of(context).textTheme.bodySmall,
+        style: Theme.of(context).textTheme.headline5,
       ),
     ),
   );
@@ -48,7 +48,7 @@ Widget customCircularProgressIndicator() {
     height: 50,
     width: 50,
     child: CircularProgressIndicator(
-      color: Constants.colorWhite,
+      color: AppConstants.colors.white,
     ),
   );
 }
