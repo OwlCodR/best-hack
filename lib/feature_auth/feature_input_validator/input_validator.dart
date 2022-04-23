@@ -1,3 +1,5 @@
+import 'package:flutter/widgets.dart';
+
 enum InputError {
   tooLong,
   tooShort,
@@ -25,6 +27,7 @@ class InputValidator {
     }
 
     if (!RegExp(regExp).hasMatch(input)) {
+      debugPrint('!RegExp($regExp).hasMatch($input)');
       return InputError.badCharacters;
     }
 

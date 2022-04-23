@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/feature_main_screen/feature_custom_widgets/custom_widgets.dart';
-import 'package:best_hack/feature_main_screen/feature_responses/reposne_stock.dart';
+import 'package:best_hack/feature_responses/reposne_stock.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +19,8 @@ class _StockTradingWidgetState extends State<StockTradingWidget> {
 
   ButtonStyle _buttonStyle() {
     return ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(AppConstants.colors.lightPurple),
+        backgroundColor:
+            MaterialStateProperty.all(AppConstants.colors.lightPurple),
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.0),
@@ -125,13 +124,13 @@ class _StockTradingWidgetState extends State<StockTradingWidget> {
   }
 
   Widget _stockTrade(BuildContext context) {
-    log('_stockTrade | ${widget.stock!.lastUpdatedEpochTime}');
+    debugPrint('_stockTrade | ${widget.stock!.lastUpdatedEpochTime}');
     final DateTime lastUpdated =
         DateTime.fromMillisecondsSinceEpoch(widget.stock!.lastUpdatedEpochTime);
     final String formattedDate = DateFormat('dd-MM-yyyy').format(lastUpdated);
     final String formattedTime = DateFormat('kk:mm:ss').format(lastUpdated);
 
-    log('_stockTrade | $formattedDate $formattedTime');
+    debugPrint('_stockTrade | $formattedDate $formattedTime');
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

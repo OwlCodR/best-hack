@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:best_hack/config/constants/constants.dart';
-import 'package:best_hack/feature_main_screen/feature_api_provider/api_provider.dart';
+import 'package:best_hack/feature_api_provider/api_provider.dart';
 import 'package:best_hack/feature_main_screen/feature_custom_widgets/custom_widgets.dart';
-import 'package:best_hack/feature_main_screen/feature_responses/reposne_stock.dart';
+import 'package:best_hack/feature_responses/reposne_stock.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +62,7 @@ class _StocksListItemWidgetState extends State<StocksListItemWidget> {
     num time = 8 + Random().nextInt(16 - 8);
     Future.delayed(Duration(seconds: (time as int)))
         .then((value) => setState(() async {
-              // log('Update $widget.stock.tag');
+              //debugPrint('Update $widget.stock.tag');
               ResponseStock newStock =
                   await ApiProvider.getStock(widget.stock.tag);
               widget.stock.price = newStock.price;

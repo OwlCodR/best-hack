@@ -1,5 +1,5 @@
 import 'package:best_hack/config/constants/constants.dart';
-import 'package:best_hack/feature_main_screen/feature_responses/reposne_stock.dart';
+import 'package:best_hack/feature_responses/reposne_stock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -55,13 +55,12 @@ Widget customCircularProgressIndicator() {
 
 Widget customCard({required Widget child}) {
   return Card(
-    margin: const EdgeInsets.all(30.0),
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(20),
+      borderRadius: BorderRadius.circular(15),
     ),
     elevation: 10,
     child: Padding(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(24.0),
       child: child,
     ),
   );

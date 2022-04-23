@@ -80,12 +80,6 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-   - family: AvenirNext
-     fonts:
-       - asset: assets/fonts/AvenirNext-Bold.otf
-         weight: 700
-       - asset: assets/fonts/AvenirNext-Regular.otf
-         weight: 400
    - family: Poppins
      fonts:
        - asset: assets/fonts/Poppins-Bold.ttf
@@ -93,6 +87,14 @@ flutter:
        - asset: assets/fonts/Poppins-Regular.ttf
          weight: 400
        - asset: assets/fonts/Poppins-Light.ttf
+         weight: 300
+   - family: SegoeUI
+     fonts:
+       - asset: assets/fonts/SegoeUIBold.ttf
+         weight: 700
+       - asset: assets/fonts/SegoeUIRegular.ttf
+         weight: 400
+       - asset: assets/fonts/SegoeUILight.ttf
          weight: 300
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

@@ -25,8 +25,7 @@ class _AppColors {
 
 class _AppRoutes {
   String mainScreen = '/main';
-  String loginScreen = '/login';
-  String registerScreen = '/register';
+  String authScreen = '/auth';
 }
 
 class _AppPaths {

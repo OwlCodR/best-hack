@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/feature_main_screen/feature_custom_widgets/custom_widgets.dart';
-import 'package:best_hack/feature_main_screen/feature_responses/reposne_stock.dart';
+import 'package:best_hack/feature_responses/reposne_stock.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -25,7 +23,7 @@ class StockInfoWidget extends StatelessWidget {
           style: Theme.of(context).textTheme.headline1,
         ),
         InkWell(
-          onTap: () => log('Tapped'),
+          onTap: () => debugPrint('Tapped'),
           child: Row(
             children: [
               Image.asset(

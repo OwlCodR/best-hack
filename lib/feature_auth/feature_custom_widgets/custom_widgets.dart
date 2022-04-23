@@ -12,15 +12,17 @@ class CustomInputFieldWidget extends StatefulWidget {
     required this.regExp,
     required this.minLength,
     required this.maxLength,
+    this.changeVisibility = false,
   }) : super(key: key);
 
-  final Function(String?) onChanged;
+  final Function(String) onChanged;
   final Function(InputError?) onErrorMessage;
 
   final String labelText;
   final String regExp;
   final int minLength;
   final int maxLength;
+  final bool changeVisibility;
 
   @override
   State<CustomInputFieldWidget> createState() => _CustomInputFieldWidgetState();
@@ -28,10 +30,17 @@ class CustomInputFieldWidget extends StatefulWidget {
 
 class _CustomInputFieldWidgetState extends State<CustomInputFieldWidget> {
   late FocusNode _fieldFocus;
+  bool _showPassword = false;
 
   void _onFocusChanged() {
     // Just a trigger to change color of the label
     setState(() {});
+  }
+
+  void _onVisibilityChanged() {
+    setState(() {
+      _showPassword = !_showPassword;
+    });
   }
 
   @override
@@ -43,21 +52,42 @@ class _CustomInputFieldWidgetState extends State<CustomInputFieldWidget> {
   }
 
   @override
+  void dispose() {
+    _fieldFocus.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
       style: TextStyle(fontSize: 16, color: AppConstants.colors.black),
       focusNode: _fieldFocus,
       enableSuggestions: false,
       autocorrect: false,
+      obscureText: !_showPassword && widget.changeVisibility,
       cursorColor: AppConstants.colors.blue,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: styledInputDecoration(
         context: context,
         hasFocus: _fieldFocus.hasFocus,
         labelText: widget.labelText,
+        suffixIcon: widget.changeVisibility
+            ? GestureDetector(
+                onTap: () => _onVisibilityChanged(),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, right: 10),
+                  child: Icon(
+                    _showPassword ? Icons.visibility : Icons.visibility_off,
+                    color: Theme.of(context).dividerColor,
+                  ),
+                ),
+              )
+            : null,
       ),
       onChanged: (String? changedTag) {
-        widget.onChanged(changedTag);
+        if (changedTag != null) {
+          widget.onChanged(changedTag);
+        }
       },
       validator: (input) {
         InputError? error = InputValidator.getInputError(
@@ -72,19 +102,6 @@ class _CustomInputFieldWidgetState extends State<CustomInputFieldWidget> {
     );
   }
 }
-
-// switch (error) {
-// case null:
-// return null;
-// case InputError.badCharacters:
-// return 'Tag contains prohibited characters';
-// case InputError.empty:
-// return 'Tag required';
-// case InputError.tooShort:
-// return 'Tag is too short';
-// case InputError.tooLong:
-// return 'Tag is too long';
-// }
 
 InputDecoration styledInputDecoration({
   required BuildContext context,
@@ -108,16 +125,15 @@ InputDecoration styledInputDecoration({
           : Theme.of(context).dividerColor,
     ),
     labelStyle: TextStyle(
-      fontFamily: 'Poppins',
       color: Theme.of(context).dividerColor,
       fontSize: 16,
       fontWeight: FontWeight.w400,
     ),
     errorStyle: TextStyle(
-      fontFamily: 'Poppins',
       color: Theme.of(context).errorColor,
       fontSize: 14,
       fontWeight: FontWeight.w400,
+      height: 0.5,
     ),
     prefixIcon: prefixIcon,
     suffixIcon: suffixIcon,
