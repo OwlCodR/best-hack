@@ -58,7 +58,7 @@ Widget customCard({required Widget child}) {
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15),
     ),
-    elevation: 10,
+    elevation: 5,
     child: Padding(
       padding: const EdgeInsets.all(24.0),
       child: child,

@@ -63,7 +63,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Center(
       child: Card(
-        elevation: 10,
+        elevation: 5,
         color: AppConstants.colors.white,
         child: SizedBox(
           width: 550,

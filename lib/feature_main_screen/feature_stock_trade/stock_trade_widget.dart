@@ -44,6 +44,10 @@ class _StockTradeWidgetState extends State<StockTradeWidget> {
     }
 
     return Card(
+      elevation: 5,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15),
+      ),
       child: Row(
         children: [
           Expanded(

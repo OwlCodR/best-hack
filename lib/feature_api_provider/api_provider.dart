@@ -5,6 +5,7 @@ import 'package:best_hack/feature_requests/request_register.dart';
 import 'package:best_hack/feature_responses/response_chart.dart';
 import 'package:best_hack/feature_responses/response_currencies.dart';
 import 'package:best_hack/feature_responses/response_login.dart';
+import 'package:best_hack/feature_responses/response_news.dart';
 import 'package:best_hack/feature_responses/response_stock.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
@@ -24,6 +25,29 @@ class ApiProvider {
     if (response.statusCode == 200) {
       debugPrint('getStocks() | response.statusCode = ${response.statusCode}');
       return ResponseStocks.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load data.');
+    }
+  }
+
+  static Future<ResponseListNews> getNews() async {
+    debugPrint('getNews() | Loading...');
+    final response = await http.post(
+      _uri('v1/news/get'),
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: jsonEncode({
+        "tags": ["Политика"]
+      }),
+    );
+    debugPrint('getNews() | Response body: ${jsonDecode(
+      utf8.decode(response.body.runes.toList()),
+    )}');
+    if (response.statusCode == 200) {
+      debugPrint('getNews() | response.statusCode = ${response.statusCode}');
+      return ResponseListNews.fromJson(
+          jsonDecode(utf8.decode(response.body.runes.toList())));
     } else {
       throw Exception('Failed to load data.');
     }
@@ -111,8 +135,8 @@ class ApiProvider {
         'Content-type': 'application/json',
       },
       body: jsonEncode({
-        'period': 30,
-        'pointsCount': 10,
+        'period': 240,
+        'pointsCount': 20,
       }),
     );
     debugPrint('getChart() | Reposnse body: ${response.body}');

@@ -1,3 +1,5 @@
+import 'dart:html' as html;
+
 import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/feature_api_provider/api_provider.dart';
 import 'package:best_hack/feature_main_screen/feature_chart/chart_widget.dart';
@@ -7,6 +9,7 @@ import 'package:best_hack/feature_responses/response_currencies.dart';
 import 'package:best_hack/feature_responses/response_stock.dart';
 import 'package:flutter/material.dart';
 
+import 'feature_news_list/news_list_widget.dart';
 import 'feature_stock_trade/stock_trade_widget.dart';
 
 class MainScreen extends StatefulWidget {
@@ -94,6 +97,7 @@ class _MainScreenState extends State<MainScreen> {
                           )
                         : Center(child: customCircularProgressIndicator()),
                   ),
+                  const SizedBox(height: 10),
                   Expanded(
                     flex: 4,
                     child: ChartWidget(
@@ -104,9 +108,14 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
             ),
-            const Expanded(
+            const SizedBox(width: 20),
+            Expanded(
               flex: 2,
-              child: Text('Text'),
+              child: NewsListWidget(
+                onItemTapped: (news) => {
+                  html.window.open(news.url, 'Name'),
+                },
+              ),
             ),
           ],
         ),
