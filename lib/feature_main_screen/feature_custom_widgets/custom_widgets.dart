@@ -1,5 +1,5 @@
 import 'package:best_hack/config/constants/constants.dart';
-import 'package:best_hack/feature_responses/reposne_stock.dart';
+import 'package:best_hack/feature_responses/response_stock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -48,7 +48,7 @@ Widget customCircularProgressIndicator() {
     height: 50,
     width: 50,
     child: CircularProgressIndicator(
-      color: AppConstants.colors.white,
+      color: AppConstants.colors.blue,
     ),
   );
 }

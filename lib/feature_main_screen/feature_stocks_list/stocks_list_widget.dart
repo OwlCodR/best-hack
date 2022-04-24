@@ -2,7 +2,8 @@ import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/feature_api_provider/api_provider.dart';
 import 'package:best_hack/feature_main_screen/feature_custom_widgets/custom_widgets.dart';
 import 'package:best_hack/feature_main_screen/feature_stocks_list/stocks_list_item_widget.dart';
-import 'package:best_hack/feature_responses/reposne_stock.dart';
+import 'package:best_hack/feature_responses/response_currencies.dart';
+import 'package:best_hack/feature_responses/response_stock.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
@@ -10,25 +11,17 @@ class StocksListWidget extends StatefulWidget {
   const StocksListWidget({
     Key? key,
     required this.onItemTapped,
-    required this.currency,
+    required this.currentCurrency,
   }) : super(key: key);
 
   final Function(ResponseStock) onItemTapped;
-  final String currency;
+  final ResponseCurrency currentCurrency;
 
   @override
   State<StocksListWidget> createState() => _StocksListWidgetState();
 }
 
 class _StocksListWidgetState extends State<StocksListWidget> {
-  Future<ResponseStocks>? _futureResponseStocks;
-
-  @override
-  void initState() {
-    super.initState();
-    _futureResponseStocks = ApiProvider.getStocks(widget.currency);
-  }
-
   @override
   Widget build(BuildContext context) {
     return customCard(
@@ -47,14 +40,13 @@ class _StocksListWidgetState extends State<StocksListWidget> {
           ),
         ),
         FutureBuilder(
-          future: _futureResponseStocks,
+          future: ApiProvider.getStocks(widget.currentCurrency.tag),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               var stocks = (snapshot.data as ResponseStocks).stocks;
               return Expanded(
                 child: ListView.separated(
                   shrinkWrap: true,
-                  padding: const EdgeInsets.all(10),
                   itemCount: stocks.length,
                   itemBuilder: (BuildContext context, int index) {
                     return StocksListItemWidget(

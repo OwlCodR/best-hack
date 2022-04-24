@@ -17,6 +17,7 @@ class _AppColors {
   Color green = const Color(0xff6FE6A9);
   Color red = const Color(0xffF76A9B);
   Color gray = const Color(0xFFC8CACF);
+  Color lightGray = const Color(0xFFF2F2F2);
 
   Color lightBlue = const Color(0xFFF3F6FF);
   Color blue = const Color(0xFF5E7CEC);
@@ -36,6 +37,8 @@ class _AppPaths {
   String bookmark = 'assets/images/bookmark.png';
   String buy = 'assets/images/buy.png';
   String sell = 'assets/images/sell.png';
+  String exchange = 'assets/images/exchange.png';
+  String avatar = 'assets/images/avatar.png';
 }
 
 class _AppKeys {

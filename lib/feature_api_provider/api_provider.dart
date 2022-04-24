@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:best_hack/feature_requests/request_login.dart';
 import 'package:best_hack/feature_requests/request_register.dart';
-import 'package:best_hack/feature_responses/reposne_stock.dart';
 import 'package:best_hack/feature_responses/response_chart.dart';
 import 'package:best_hack/feature_responses/response_currencies.dart';
 import 'package:best_hack/feature_responses/response_login.dart';
+import 'package:best_hack/feature_responses/response_stock.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,9 +17,9 @@ class ApiProvider {
     return Uri.parse('$_protocol$_apiServer$url');
   }
 
-  static Future<ResponseStocks> getStocks(String currency) async {
-    debugPrint('getStocks() | Loading...');
-    final response = await http.get(_uri(('v1/stocks/$currency/current')));
+  static Future<ResponseStocks> getStocks(String tag) async {
+    debugPrint('getStocks($tag) | Loading...');
+    final response = await http.get(_uri('v1/stocks/$tag/current'));
     debugPrint('getStocks() | Response body: ${jsonDecode(response.body)}');
     if (response.statusCode == 200) {
       debugPrint('getStocks() | response.statusCode = ${response.statusCode}');
@@ -29,10 +29,13 @@ class ApiProvider {
     }
   }
 
-  static Future<ResponseStock> getStock(String tag) async {
-    debugPrint('getStock() | Loading...');
+  static Future<ResponseStock> getStock({
+    required String sourceCurrency,
+    required String targetCurrency,
+  }) async {
+    debugPrint('getStock($sourceCurrency, $targetCurrency) | Loading...');
     final response = await http.get(
-      _uri('v1/stocks/$tag'),
+      _uri('v1/stocks/$targetCurrency/$sourceCurrency'),
     );
     debugPrint('getStock() | Body: ${response.body}');
     if (response.statusCode == 200) {
@@ -97,16 +100,19 @@ class ApiProvider {
     }
   }
 
-  static Future<ResponseChart> getChart(String tag) async {
+  static Future<ResponseChart> getChart({
+    required String sourceCurrency,
+    required String targetCurrency,
+  }) async {
     debugPrint('getChart() | Loading...');
     final response = await http.post(
-      _uri(('v1/stocks/$tag/graph')),
+      _uri(('v1/stocks/$targetCurrency/$sourceCurrency/graph')),
       headers: {
         'Content-type': 'application/json',
       },
       body: jsonEncode({
-        'period': 7,
-        'pointsCount': 7,
+        'period': 30,
+        'pointsCount': 10,
       }),
     );
     debugPrint('getChart() | Reposnse body: ${response.body}');

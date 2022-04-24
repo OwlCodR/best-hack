@@ -3,14 +3,16 @@ import 'dart:math';
 import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/feature_api_provider/api_provider.dart';
 import 'package:best_hack/feature_main_screen/feature_custom_widgets/custom_widgets.dart';
-import 'package:best_hack/feature_responses/reposne_stock.dart';
+import 'package:best_hack/feature_responses/response_stock.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class StocksListItemWidget extends StatefulWidget {
-  const StocksListItemWidget(
-      {Key? key, required this.onItemTapped, required this.stock})
-      : super(key: key);
+  const StocksListItemWidget({
+    Key? key,
+    required this.onItemTapped,
+    required this.stock,
+  }) : super(key: key);
 
   final ResponseStock stock;
   final Function(ResponseStock) onItemTapped;
@@ -42,15 +44,14 @@ class _StocksListItemWidgetState extends State<StocksListItemWidget> {
   }
 
   Widget _stockTitle(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
       children: [
         Text(
-          widget.stock.name,
+          widget.stock.sourceCurrency,
           style: Theme.of(context).textTheme.bodyText1,
         ),
         Text(
-          '1 шт ${widget.stock.price.toStringAsFixed(2).replaceAll('.', ',')} у.е.',
+          '${widget.stock.price.toStringAsFixed(4).replaceAll('.', ',')} ${widget.stock.targetCurrency}',
           style: Theme.of(context).textTheme.headline5,
         )
       ],
@@ -59,32 +60,33 @@ class _StocksListItemWidgetState extends State<StocksListItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    num time = 8 + Random().nextInt(16 - 8);
-    Future.delayed(Duration(seconds: (time as int)))
-        .then((value) => setState(() async {
-              //debugPrint('Update $widget.stock.tag');
-              ResponseStock newStock =
-                  await ApiProvider.getStock(widget.stock.tag);
-              widget.stock.price = newStock.price;
-              widget.stock.priceDelta = newStock.priceDelta;
-              widget.stock.lastUpdatedEpochTime =
-                  DateTime.now().millisecondsSinceEpoch;
-            }));
+    num time = 30 + Random().nextInt(60 - 30);
+    Future.delayed(Duration(seconds: (time as int))).then((value) =>
+        //debugPrint('Update $widget.stock.tag');
+        ApiProvider.getStock(
+          sourceCurrency: widget.stock.sourceCurrency,
+          targetCurrency: widget.stock.targetCurrency,
+        ).then((newStock) {
+          widget.stock.price = newStock.price;
+          widget.stock.priceDelta = newStock.priceDelta;
+          widget.stock.lastUpdatedEpochTime =
+              DateTime.now().millisecondsSinceEpoch;
+        }));
 
     return ListTile(
       // Removes default padding from left and right
       contentPadding: EdgeInsets.zero,
-      leading: CircleAvatar(
-        radius: 25,
-        backgroundImage: NetworkImage(
-          widget.stock.imageUrl,
-        ),
-      ),
       title: Row(
         children: [
-          _stockTitle(context),
+          Text(
+            widget.stock.sourceCurrency,
+            style: Theme.of(context).textTheme.headline4,
+          ),
           const Spacer(),
-          _priceDelta(context),
+          Text(
+            widget.stock.price.toStringAsFixed(4).replaceAll('.', ','),
+            style: Theme.of(context).textTheme.headline6,
+          ),
         ],
       ),
       onTap: () => widget.onItemTapped(widget.stock),

@@ -19,38 +19,31 @@ class ResponseStocks {
 class ResponseStock {
   ResponseStock({
     required this.price,
-    required this.name,
-    required this.tag,
-    required this.imageUrl,
-    required this.state,
+    required this.sellPrice,
+    required this.buyPrice,
     required this.priceDelta,
+    required this.sourceCurrency,
+    required this.targetCurrency,
     required this.lastUpdatedEpochTime,
   });
 
   double price;
-  String name;
-  String tag;
-  String imageUrl;
-  StockState state;
+  double sellPrice;
+  double buyPrice;
+
+  String sourceCurrency;
+  String targetCurrency;
   int lastUpdatedEpochTime; // ms
   _ResponsePriceDelta priceDelta;
 
   factory ResponseStock.fromJson(Map<String, dynamic> json) {
-    // return ResponseStock(
-    //   price: json['price'],
-    //   name: json['name'],
-    //   tag: json['tag'],
-    //   imageUrl: json['image_url'],
-    //   state: StockStateProvider.fromString(json['state']),
-    //   priceDelta: _ResponsePriceDelta.fromjson(json['change']),
-    // );
     return ResponseStock(
       price: json['price'],
-      name: json['name'],
-      tag: json['tag'],
-      imageUrl: 'https://i.imgur.com/eXkgFEA.png',
+      sellPrice: json['sellPrice'],
+      buyPrice: json['buyPrice'],
+      sourceCurrency: json['sourceCurrency'],
+      targetCurrency: json['targetCurrency'],
       lastUpdatedEpochTime: DateTime.now().millisecondsSinceEpoch,
-      state: StockStateProvider.fromString(json['state']),
       priceDelta: _ResponsePriceDelta.fromjson(json['change']),
     );
   }
@@ -69,24 +62,3 @@ class _ResponsePriceDelta {
     );
   }
 }
-
-class StockStateProvider {
-  static fromString(String state) {
-    switch (state) {
-      case 'PRE':
-        return StockState.PRE;
-      case 'REGULAR':
-        return StockState.REGULAR;
-      case 'POST':
-        return StockState.POST;
-      case 'CLOSED':
-        return StockState.CLOSED;
-      case 'POSTPOST':
-        return StockState.POSTPOST;
-      case 'PREPRE':
-        return StockState.PREPRE;
-    }
-  }
-}
-
-enum StockState { PRE, POST, REGULAR, CLOSED, POSTPOST, PREPRE }

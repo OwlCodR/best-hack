@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Stonks Inc.',
-      initialRoute: AppConstants.routes.mainScreen,
+      initialRoute: AppConstants.routes.authScreen,
       routes: {
         AppConstants.routes.mainScreen: (context) => const MainScreen(),
         AppConstants.routes.authScreen: (context) => const AuthScreen(),

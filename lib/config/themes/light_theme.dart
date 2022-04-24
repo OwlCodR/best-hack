@@ -33,14 +33,19 @@ class CustomTheme {
           fontWeight: FontWeight.bold,
         ),
         headline4: TextStyle(
-          color: AppConstants.colors.white,
+          color: AppConstants.colors.blue,
           fontSize: 20,
-          fontWeight: FontWeight.normal,
+          fontWeight: FontWeight.bold,
         ),
         headline5: TextStyle(
           color: AppConstants.colors.gray,
           fontSize: 18,
           fontWeight: FontWeight.normal,
+        ),
+        headline6: TextStyle(
+          color: AppConstants.colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
         ),
         subtitle1: TextStyle(
           color: AppConstants.colors.red,

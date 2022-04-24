@@ -3,6 +3,7 @@ import 'dart:core';
 import 'package:best_hack/config/constants/constants.dart';
 import 'package:best_hack/feature_api_provider/api_provider.dart';
 import 'package:best_hack/feature_auth/feature_input_validator/input_validator.dart';
+import 'package:best_hack/feature_main_screen/main_screen.dart';
 import 'package:best_hack/feature_requests/request_login.dart';
 import 'package:best_hack/feature_requests/request_register.dart';
 import 'package:flutter/material.dart';
@@ -295,7 +296,12 @@ class _AuthScreenState extends State<AuthScreen> {
         password: _password,
       ),
     ).then((responseLogin) {
-      // @TODO responseLogin UUID
+      if (responseLogin != null && responseLogin.uuid.isNotEmpty) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MainScreen()),
+        );
+      }
     });
   }
 
@@ -310,7 +316,10 @@ class _AuthScreenState extends State<AuthScreen> {
       password: _password,
       name: _name,
       surname: _surname,
-    ));
+    )).then((value) => Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => const MainScreen()),
+        ));
   }
 
   String? checkEmail(InputError? error) {
