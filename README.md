@@ -11,3 +11,5 @@
 - `/lib` - Main folder with dart code.
 - All tasks divided on features which have their own folders.
 - 24 hours per project
+
+# :fireworks: Results: 1st place
